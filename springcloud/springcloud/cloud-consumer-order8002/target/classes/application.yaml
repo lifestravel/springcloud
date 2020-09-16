@@ -1,0 +1,16 @@
+server:
+  port: 8002
+spring:
+  application:
+    # 微服务名称
+    name: cloud-consumer-service
+
+eureka:
+  client:
+    # false 表示不想注册中心注册自己，true注册到服务中心
+    register-with-eureka: true
+    # false表示自己就是注册中心，职责就是维护服务实例，并不需要检索服务,true表示从EurekaServer撞去已有的注册信息，(集群必须设置为true才能配合ribbon使用负载均衡)
+    fetch-registry: true
+    service-url:
+      #设置与Eureka server的地址查询服务和注册服务都需要依赖这个地址。
+      defaultZone: http://localhost:7001/eureka
