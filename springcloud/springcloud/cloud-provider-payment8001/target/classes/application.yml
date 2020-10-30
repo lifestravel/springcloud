@@ -2,7 +2,7 @@ server:
   port: 8001
 spring:
   application:
-    # 微服务名称
+    # 微服务名称，生产者集群，这个要写的一样，这是这个集群的关键
     name: cloud-payment-service
 
   datasource:
@@ -27,9 +27,11 @@ eureka:
       #defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka
       defaultZone: http://eureka7001.com:7001/eureka
   instance:
+    # 实例显示id
     instance-id: payment8001
+    # 鼠标放上去显示ip地址
     prefer-ip-address: true
     #Eureka客户端向服务器端发送心跳的时间间隔单位是秒，默认是30秒
     lease-renewal-interval-in-seconds: 1
-    #Eureka服务端再收到最后一次心跳后等待时间上限，单位为秒默认是90秒，超时将剔除服务
+    #Eureka服务端再收到最后一次心跳后等待时间上限，单位为秒默认是90秒，超时将剔除服务，这个值至少要大于lease-renewal-interval-in-seconds
     lease-expiration-duration-in-seconds: 2
