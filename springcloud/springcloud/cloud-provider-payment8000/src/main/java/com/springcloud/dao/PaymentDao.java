@@ -21,12 +21,12 @@ public interface PaymentDao {
      * @param payment
      * @return
      */
-     int create(Payment payment);
+    int create(Payment payment);
 
     /**
      * 根据id查
      * @param id
      * @return
      */
-     Payment getPaymentById(@Param("id") Long id);
+    Payment getPaymentById(@Param("id") Long id);
 }

@@ -12,6 +12,8 @@
     <module>cloud-consumer-order8002</module>
     <module>cloud-api-common</module>
     <module>cloud-eureka-server7001</module>
+      <module>cloudeurekaserver7002</module>
+    <module>cloud-provider-payment8000</module>
   </modules>
   <packaging>pom</packaging>
 
@@ -42,11 +44,6 @@
   <!--统一管理jar包版本-->
   <dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>3.0.0</version>
-      </dependency>
       <!--spring boot 2.2.2-->
       <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -121,10 +118,7 @@
           <artifactId>maven-site-plugin</artifactId>
           <version>3.7.1</version>
         </plugin>
-        <plugin>
-          <artifactId>maven-project-info-reports-plugin</artifactId>
-          <version>3.0.0</version>
-        </plugin>
+
       </plugins>
     </pluginManagement>
     <plugins>

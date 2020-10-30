@@ -1,18 +1,12 @@
 package com.springcloud.controller;
 
-
 import com.springcloud.pojo.CommonResult;
 import com.springcloud.pojo.Payment;
 import com.springcloud.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -31,9 +25,6 @@ public class PaymentController {
 
     @Value("${server.port}")
     private String serverPort;
-
-    @Resource
-    private DiscoveryClient discoveryClient;
 
     /**
      * @RequestBody一定要加，否则消费者调用不能封装数据
@@ -67,19 +58,5 @@ public class PaymentController {
         }else {
             return new CommonResult(500,"没有对应记录,serverport:"+serverPort);
         }
-    }
-
-    @GetMapping(value = "/payment8001/discovery")
-    public Object discovery(){
-        List<String> services = discoveryClient.getServices();
-        for (String element : services){
-            log.info("***element:{}",element);
-        }
-        List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
-        for (ServiceInstance instance : instances) {
-            log.info("服务id = "+instance.getServiceId()+", 主机 = "+instance.getHost()+ ", 实例id = "+instance.getInstanceId()
-            +", url = " +instance.getUri()+", 端口 = "+instance.getPort());
-        }
-        return this.discoveryClient;
     }
 }

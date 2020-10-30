@@ -19,7 +19,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Component
-public class Payment implements Serializable {
+public class  Payment implements Serializable {
     private Long id;
     private String serial;
 }

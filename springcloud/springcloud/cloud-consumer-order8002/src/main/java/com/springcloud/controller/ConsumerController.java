@@ -24,17 +24,21 @@ public class ConsumerController {
     @Autowired
     RestTemplate restTemplate;
 
-    public static final String PAYMENT_URL="http://localhost:8001";
+    /**
+     * 不要再使用url+端口号了，改成微服务名称，需要配置负载均衡器
+     */
+    public static final String PAYMENT_URL="http://cloud-payment-service";
 
-    @PostMapping("/payment/create")
+    @PostMapping("/create")
     public CommonResult<Payment> create(Payment payment){
         log.info(payment.toString());
         return restTemplate.postForObject(PAYMENT_URL + "/payment/create",payment,CommonResult.class);
     }
 
 
-    @GetMapping("/payment/get/{id}/")
+    @GetMapping("/get/{id}/")
     public CommonResult<Payment> getPayment(@PathVariable("id") Long id){
+        log.info("远程调用查询!");
         return restTemplate.getForObject(PAYMENT_URL + "/payment/get/"+id,CommonResult.class);
     }
 }
