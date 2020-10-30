@@ -1,4 +1,13 @@
 # Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+/target
+out
+gen
 ### Java template
 # Compiled class file
 *.class
@@ -23,7 +32,19 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-target/
-.idea/
-*.iml
 
+.gitignore
+cloud-api-common/target/generated-sources/
+cloud-consumer-9004/src/test/
+cloud-consumer-9004/target/
+cloud-consumer-order8002/target/generated-sources/
+cloud-eureka-server7001/target/generated-sources/
+cloud-eureka-server7002/target/
+cloud-provider-consul-service8006/src/test/
+cloud-provider-consul-service8006/target/
+cloud-provider-payment8000/target/
+cloud-provider-payment8001/target/generated-sources/
+cloud-provider-payment8004/src/test/
+cloud-provider-payment8004/target/
+cloud-provider-payment8005/src/test/
+cloud-provider-payment8005/target/
