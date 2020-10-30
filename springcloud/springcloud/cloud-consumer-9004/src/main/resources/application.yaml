@@ -1,0 +1,9 @@
+server:
+  port: 9004
+spring:
+  application:
+    name: cloud-consumer-service
+  cloud:
+    zookeeper:
+      # zookeeper服务器地址和端口号,倘若配置集群，后面多加几个connect-string
+      connect-string: 192.168.107.129:2181

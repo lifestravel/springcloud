@@ -85,3 +85,41 @@ leaseRenewalIntervalInSeconds，表示eureka client发送心跳给server端的�
   综上，自我保护模式是一种应对网络异常的安全保护措施。它的架构哲学是宁可同时保留所有微服务（健康的微服务和不健康的微服务都会保留），也不盲目注销任何健康的微服务。使用自我保护模式，可以让Eureka集群更加的健壮、稳定。
   *eureka.server.eviction-interval-timer-in-ms*
   eureka server清理无效节点的时间间隔，默认60000毫秒，即60秒
+
+#zookeeper
+    zookeeper是一个分布式协调工具，可以实现注册中心功能
+    关闭Linux服务器防火墙后动zookeeper服务器
+    zookeeper服务器取代Eureka服务器，zk作为服务注册中心
+    
+##zookeeper依赖
+```xml
+ <!--springcloud 整合 zookeeper 组件-->
+        <!--如果 服务端安装的zookeeper是低版本的可以会与jar包中的版本冲突，由zk-discovery和zk之间的jar包冲突的问题。需要手动排除依赖-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <!--zk发现-->
+            <artifactId>spring-cloud-starter-zookeeper-discovery</artifactId>
+        </dependency>
+```
+> 
+>我们在zk上注册的node是临时节点,当我们的服务一定时间内没有发送心跳，那么zk就会将这个服务的znode删除了。
+没有自我保护机制。重新建立连接后znode-id号也会变
+>```shell script
+># 通过zookeeper客户端zkCki.sh连接zookeeper 
+># 查看我们注册的所有服务
+>ls /services
+># 查看 cloud-provider-service节点
+>ls /services/cloud-provider-service
+>```
+**关于 zookeeper 的集群搭建，目前使用较少，而且在 yml 文件中的配置也是类似，以列表形式写入 zookeeper 的多个地址即可，**
+
+#Consul
+consul也是服务注册中心的一个实现，是由go语言写的。官网地址： https://www.consul.io/intro 中文地址： https://www.springcloud.cc/spring-cloud-consul.html
+Consul是一套开源的分布式服务发现和配置管理系统。
+提供了微服务系统中的服务治理，配置中心，控制总线等功能。这些功能中的每一个都可以根据需要单独使用，也可以一起使用以构建全方位的服务网络。
+**提供的功能：**
+> 服务发现：提供HTTP和DNS两种发现方式
+> 健康监测：支持多种方式，HTTP、TCP、Docker、Shell脚本定制化
+  KV存储：Key、Value的存储方式
+  多数据中心：Consul支持多数据中心
+  可视化Web界面

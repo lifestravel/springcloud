@@ -1,0 +1,17 @@
+server:
+  port: 8006
+spring:
+  application:
+    name: cloud-provider-consul-service
+  cloud:
+    consul:
+      host: 192.168.107.129
+      port: 8500
+      discovery:
+        #指定注册对外暴露的服务名称
+        service-name: ${spring.application.name}
+        hostname: 192.168.107.129
+        health-check-url: http://${spring.cloud.client.ip-address}:${server.port}/actuator/health
+        heartbeat:
+          enabled: true
+        prefer-ip-address: true
